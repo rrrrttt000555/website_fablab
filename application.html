@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на курсы - ФабЛаб ТюмГУ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section class="form-section">
+            <div class="container">
+                <div class="form-card">
+                    <h2>Запись на 3 мес. курсы в АПБ</h2>
+                    <form action="https://formspree.io/f/maqdpzwo" method="POST">
+                        <div class="form-group">
+                            <label for="childName">Фамилия и Имя ребёнка *</label>
+                            <input type="text" id="childName" name="childName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="childBirthDate">Дата рождения ребёнка *</label>
+                            <input type="text" id="childBirthDate" name="childBirthDate" placeholder="дд.мм.гггг" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parentName">Ф.И.О. родителя *</label>
+                            <input type="text" id="parentName" name="parentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Контактный телефон *</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" placeholder="+7 (XXX) XXX-XX-XX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="courseSelect">Выберите из списка *</label>
+                            <div class="select-wrapper">
+                                <select id="courseSelect" name="courseSelect" required>
+                                    <option value="">-- Выберите курс --</option>
+                                    <option value="Экспериментальная химия (7-13 лет)">Экспериментальная химия (7-13 лет)</option>
+                                    <option value="Инженеры света (7-9 лет)">Инженеры света (7-9 лет)</option>
+                                    <option value="Артефакты киновселенной (9-12 лет)">Артефакты киновселенной (9-12 лет)</option>
+                                    <option value="Нефтегазовые технологии (12-15 лет)">Нефтегазовые технологии (12-15 лет)</option>
+                                </select>
+                                <span class="select-arrow"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn submit-btn">Отправить</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
