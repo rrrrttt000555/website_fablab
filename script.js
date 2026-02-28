@@ -84,9 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
             chatbotInputField.value = '';
             chatbotInputField.focus();
 
-            // Используем относительный путь, если сайт запущен через наш сервер (3001),
-            // либо абсолютный, если через Live Server (5500 и т.д.)
-            const apiPath = window.location.port === '3001' ? '/api/chat' : 'https://website-fablab.onrender.com/api/chat';
+            // Определяем путь к API
+            let apiPath = '/api/chat'; // По умолчанию относительный (для Render и локального запуска на 3001)
+
+            if (window.location.hostname === 'localhost' && window.location.port !== '3001') {
+                // Если мы на localhost, но порт не 3001 (например, Live Server 5500)
+                apiPath = 'http://localhost:3001/api/chat';
+            } else if (window.location.hostname.includes('github.io')) {
+                // Если мы на GitHub Pages
+                apiPath = 'https://website-fablab.onrender.com/api/chat';
+            }
 
             fetch(apiPath, {
                 method: 'POST',
@@ -96,10 +103,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ message: text })
             })
                 .then(async response => {
+                    console.log('Response status:', response.status);
                     let data = null;
                     try {
                         data = await response.json();
+                        console.log('Response data:', data);
                     } catch (e) {
+                        console.error('Error parsing JSON:', e);
                     }
 
                     if (!response.ok) {
@@ -125,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     appendMessage(reply, false);
                 })
                 .catch(error => {
+                    console.error('Fetch error:', error);
                     const lastMessage = chatbotMessages.lastElementChild;
                     if (lastMessage && lastMessage.classList.contains('bot-message') && lastMessage.textContent === 'Думаю над ответом...') {
                         chatbotMessages.removeChild(lastMessage);
