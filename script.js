@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Используем относительный путь, если сайт запущен через наш сервер (3001),
             // либо абсолютный, если через Live Server (5500 и т.д.)
-            const apiPath = window.location.port === '3001' ? '/api/chat' : 'http://localhost:3001/api/chat';
+            const apiPath = window.location.port === '3001' ? '/api/chat' : 'https://website-fablab.onrender.com/api/chat';
 
             fetch(apiPath, {
                 method: 'POST',
